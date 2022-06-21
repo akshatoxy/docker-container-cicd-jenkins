@@ -1,19 +1,36 @@
 pipeline {
   agent any
   stages {
+
+    stage("init") {
+      steps {
+        script {
+          gv = load "script.groovy"
+        }
+      }
+    }
+
     stage("buildImage") {
       steps {
-        echo "Building Docker image"
+        script {
+          gv.buildImage()
+        }
       }
     }
-    stage("pushImage") {
+    
+    stage("pushToECR") {
       steps {
-        echo "Pushing image to ECR"
+        script {
+          gv.pushToECR()
+        }
       }
     }
-    stage("deploy") {
+
+    stage("deployToEC2") {
       steps {
-        echo "Deploying to EC2"
+        script {
+          gv.deployToEC2()
+        }
       }
     }
   }

@@ -1,8 +1,8 @@
 version: '3'
 services:
   my-app:
-    image: myapp:latest
-    container_name: my-app
+    image: 639504421228.dkr.ecr.us-east-1.amazonaws.com/docker-container-cicd-jenkins:latest
+    container_name: node-app
     ports:
      - 3000:3000
   mongodb:
